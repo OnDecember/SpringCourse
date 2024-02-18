@@ -1,6 +1,6 @@
 package org.maxym.spring;
 
-import org.maxym.spring.music.Music;
+import org.maxym.spring.player.MusicPlayer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringTest {
@@ -12,6 +12,8 @@ public class SpringTest {
         MusicPlayer player = context.getBean("musicPlayer", MusicPlayer.class);
 
         player.playMusic();
+        System.out.println(player.getName());
+        System.out.println(player.getVolume());
 
         context.close();
     }
