@@ -11,4 +11,7 @@
           class="org.maxym.spring.music.DubstepMusic">
     </bean>
 
+    <bean id="musicPlayer" class="org.maxym.spring.MusicPlayer">
+        <constructor-arg ref="musicBean"/>
+    </bean>
 </beans>
