@@ -11,18 +11,24 @@ public class SpringTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                     "applicationContext.xml");
 
-        Music rockMusic = context.getBean("rockMusic", Music.class);
+//        Music rockMusic = context.getBean("rockMusic", Music.class);
+//
+//        MusicPlayer rockPlayer = new MusicPlayer(rockMusic);
+//
+//        rockPlayer.playMusic();
+//
+//        Music classicalMusic = context.getBean("classicalMusic", Music.class);
+//
+//        MusicPlayer classicalPlayer = new MusicPlayer(classicalMusic);
+//
+//        classicalPlayer.playMusic();
 
-        MusicPlayer rockPlayer = new MusicPlayer(rockMusic);
+//
+//        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+//        musicPlayer.playMusic();
 
-        rockPlayer.playMusic();
-
-        Music classicalMusic = context.getBean("classicalMusic", Music.class);
-
-        MusicPlayer classicalPlayer = new MusicPlayer(classicalMusic);
-
-        classicalPlayer.playMusic();
-
+        Computer computer = context.getBean("computer", Computer.class);
+        System.out.println(computer);
         context.close();
     }
 }
