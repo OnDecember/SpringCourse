@@ -6,15 +6,11 @@ import java.util.List;
 
 public class MusicPlayer {
 
-    private List<Music> music;
+    private Music music;
     private String name;
     private int volume;
 
-    public List<Music> getMusic() {
-        return music;
-    }
-
-    public void setMusic(List<Music> music) {
+    public MusicPlayer(Music music) {
         this.music = music;
     }
 
@@ -35,9 +31,6 @@ public class MusicPlayer {
     }
 
     public void playMusic() {
-        System.out.println("Playing:");
-        music.stream()
-                .map(Music::getSong)
-                .forEach(System.out::println);
+        System.out.println("Playing: " + music.getSong());
     }
 }
