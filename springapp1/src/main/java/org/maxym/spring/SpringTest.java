@@ -1,7 +1,6 @@
 package org.maxym.spring;
 
 import org.maxym.spring.music.ClassicalMusic;
-import org.maxym.spring.player.MusicPlayer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringTest {

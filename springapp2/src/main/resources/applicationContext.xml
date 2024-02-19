@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="classicalMusic"
+          class="org.maxym.spring.music.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic"/>
+    <!--    <bean id="dubstepMusic"-->
+    <!--          class="org.maxym.spring.music.DubstepMusic"-->
+    <!--          scope="prototype"/>-->
+    <!--    <bean id="rockMusic"-->
+    <!--          class="org.maxym.spring.music.RockMusic"-->
+    <!--          scope="prototype"/>-->
+
+    <!--    <bean id="musicPlayer"-->
+    <!--          class="org.maxym.spring.player.MusicPlayer"-->
+    <!--          scope="prototype">-->
+
+    <!--        <property name="music">-->
+    <!--            <list>-->
+    <!--                <ref bean="dubstepMusic"/>-->
+    <!--                <ref bean="rockMusic"/>-->
+    <!--                <ref bean="classicalMusic"/>-->
+    <!--            </list>-->
+    <!--        </property>-->
+
+    <!--        <property name="name" value="${player.name}"/>-->
+    <!--        <property name="volume" value="${player.volume}"/>-->
+    <!--    </bean>-->
+</beans>
