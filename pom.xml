@@ -1,21 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.maxym.spring</groupId>
-  <artifactId>SpringCourse</artifactId>
-  <packaging>pom</packaging>
+    <groupId>org.maxym.spring</groupId>
+    <artifactId>SpringCourse</artifactId>
+    <packaging>pom</packaging>
 
-  <version>1.0-SNAPSHOT</version>
-  <name>Spring Course</name>
-  <url>https://maven.apache.org</url>
+    <version>1.0-SNAPSHOT</version>
+    <name>Spring Course</name>
+    <url>https://maven.apache.org</url>
 
-  <modules>
-    <module>springapp1</module>
-    <module>springapp2</module>
-  </modules>
+    <modules>
+        <module>springapp1</module>
+        <module>springapp2</module>
+        <module>springapp3</module>
+    </modules>
 
-  <build>
-    <finalName>SpringCourse</finalName>
-  </build>
+    <build>
+        <finalName>SpringCourse</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
