@@ -1,5 +1,6 @@
 package org.maxym.spring;
 
+import org.maxym.spring.enums.MusicGenre;
 import org.maxym.spring.player.MusicPlayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,8 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Computer {
 
-    private int id;
-    private MusicPlayer musicPlayer;
+    private final int id;
+    private final MusicPlayer musicPlayer;
+    private MusicGenre musicGenre;
 
     @Autowired
     public Computer(MusicPlayer musicPlayer) {
@@ -16,8 +18,12 @@ public class Computer {
         this.musicPlayer = musicPlayer;
     }
 
+    public void setGenre(MusicGenre musicGenre) {
+        this.musicGenre = musicGenre;
+    }
+
     @Override
     public String toString() {
-        return "Computer " + id + " " + musicPlayer.playMusic();
+        return "Computer " + id + " " + musicPlayer.playMusic(musicGenre);
     }
 }

@@ -1,5 +1,7 @@
 package org.maxym.spring.music;
 
+import java.util.List;
+
 public interface Music {
-    String getSong();
+    List<String> getSong();
 }
