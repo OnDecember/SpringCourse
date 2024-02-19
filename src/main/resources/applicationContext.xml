@@ -9,11 +9,14 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="dubstepMusic" class="org.maxym.spring.music.DubstepMusic"/>
-    <bean id="classicalMusic" class="org.maxym.spring.music.ClassicalMusic"/>
-    <bean id="rockMusic" class="org.maxym.spring.music.RockMusic"/>
+    <bean id="dubstepMusic" class="org.maxym.spring.music.DubstepMusic" scope="prototype"/>
+    <bean id="classicalMusic" class="org.maxym.spring.music.ClassicalMusic" scope="prototype"/>
+    <bean id="rockMusic" class="org.maxym.spring.music.RockMusic" scope="prototype"/>
 
-    <bean id="musicPlayer" class="org.maxym.spring.player.MusicPlayer">
+    <bean id="musicPlayer"
+          class="org.maxym.spring.player.MusicPlayer"
+          scope="prototype">
+
         <property name="music">
             <list>
                 <ref bean="dubstepMusic"/>

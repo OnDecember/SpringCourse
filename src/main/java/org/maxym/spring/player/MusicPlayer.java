@@ -10,6 +10,10 @@ public class MusicPlayer {
     private String name;
     private int volume;
 
+    public List<Music> getMusic() {
+        return music;
+    }
+
     public void setMusic(List<Music> music) {
         this.music = music;
     }
