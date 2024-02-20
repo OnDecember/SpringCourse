@@ -10,19 +10,18 @@ import java.util.List;
 @Component
 public class PersonDAO {
 
-    private static int PEOPLE_COUNT;
-
-    private static final String URL = "jdbc:postgresql://localhost:5432/first_db";
     public static final String USER_NAME = "user";
     public static final String USER_PASSWORD = "user";
-
+    private static final String URL = "jdbc:postgresql://localhost:5432/first_db";
+    private static int PEOPLE_COUNT;
     private static Connection connection;
 
-    static  {
+    static {
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(URL, USER_NAME, USER_PASSWORD);
-        } catch (ClassNotFoundException | SQLException ignore) {}
+        } catch (ClassNotFoundException | SQLException ignore) {
+        }
     }
 
     public List<Person> getPeople() {
@@ -43,39 +42,75 @@ public class PersonDAO {
 
                 people.add(person);
             }
-        } catch (SQLException ignore) {}
+        } catch (SQLException ignore) {
+        }
 
         return people;
     }
 
     public Person getPerson(int id) {
-//        return people.stream()
-//                .filter(person -> person.getId() == id)
-//                .findAny()
-//                .orElse(null);
-        return null;
+        Person person = null;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM person WHERE id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+
+            person = new Person();
+
+            person.setId(resultSet.getInt("id"));
+            person.setName(resultSet.getString("name"));
+            person.setAge(resultSet.getInt("age"));
+            person.setEmail(resultSet.getString("email"));
+
+        } catch (SQLException ignore) {
+        }
+        return person;
     }
 
     public void save(Person person) {
-//        person.setId(++PEOPLE_COUNT);
-//        people.add(person);
 
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "INSERT INTO person VALUES (" + 5 + ", '" + person.getName() + "', " + person.getAge() + ", '" + person.getEmail() + "');";
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO person VALUES (1, ?, ?, ?)");
 
-            statement.executeUpdate(SQL);
-        } catch (SQLException ignore) {}
+            preparedStatement.setString(1, person.getName());
+            preparedStatement.setInt(2, person.getAge());
+            preparedStatement.setString(3, person.getEmail());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException ignore) {
+        }
     }
 
     public void update(Person person, int id) {
-//        Person personToBeUpdated = getPerson(id);
-//        personToBeUpdated.setName(person.getName());
-//        personToBeUpdated.setAge(person.getAge());
-//        personToBeUpdated.setEmail(person.getEmail());
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE person SET " +
+                    "name = ?," +
+                    "age = ?," +
+                    "email = ?" +
+                    "WHERE id = ?");
+
+            preparedStatement.setString(1, person.getName());
+            preparedStatement.setInt(2, person.getAge());
+            preparedStatement.setString(3, person.getEmail());
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException ignore) {
+        }
     }
 
     public void delete(int id) {
-//        people.removeIf(person -> person.getId() == id);
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM person WHERE id = ?");
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException ignore) {
+        }
     }
 }
