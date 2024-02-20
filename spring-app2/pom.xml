@@ -7,10 +7,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>springapp3</artifactId>
+    <artifactId>spring-app2</artifactId>
     <packaging>war</packaging>
-    <name>springapp3 Maven Webapp</name>
+    <name>springapp2 Maven Webapp</name>
     <url>https://maven.apache.org</url>
+
 
     <dependencies>
         <dependency>
@@ -43,4 +44,9 @@
             <version>3.0.0-M1</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>springapp2</finalName>
+    </build>
+
 </project>

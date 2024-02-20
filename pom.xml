@@ -11,9 +11,9 @@
     <url>https://maven.apache.org</url>
 
     <modules>
-        <module>springapp1</module>
-        <module>springapp2</module>
-        <module>springapp3</module>
+        <module>spring-app1</module>
+        <module>spring-app2</module>
+        <module>spring-app3</module>
         <module>spring-mvc-app1</module>
     </modules>
 
