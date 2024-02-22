@@ -16,6 +16,7 @@
         <module>spring-app3</module>
         <module>spring-mvc-app1</module>
         <module>spring-mvc-app2</module>
+        <module>spring-project-1</module>
     </modules>
 
     <build>
