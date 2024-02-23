@@ -1,5 +1,6 @@
 package org.maxym.spring;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -29,17 +30,22 @@ public class App
         try {
             session.beginTransaction();
 
-            Person person = new Person("New Person", 20);
+            Item item = session.get(Item.class, 1);
 
-            Item item1 = new Item("Test Item 1");
-            Item item2 = new Item("Test Item 2");
-            Item item3 = new Item("Test Item 3");
+            System.out.println("get item");
 
-            person.addItem(item1);
-            person.addItem(item2);
-            person.addItem(item3);
+            System.out.println(item.getOwner());
 
-            session.save(person);
+            Person person = session.get(Person.class, 1);
+
+            session.getTransaction().commit();
+
+            session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+
+            person = session.merge(person);
+
+            System.out.println(person.getItems());
 
             session.getTransaction().commit();
 
