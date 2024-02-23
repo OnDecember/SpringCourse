@@ -1,4 +1,4 @@
-package org.maxym.spring.controllers;
+package org.maxym.spring.controller;
 
 import org.maxym.spring.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;

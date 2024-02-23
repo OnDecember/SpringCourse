@@ -1,7 +1,7 @@
 package org.maxym.spring.util;
 
 import org.maxym.spring.dao.PersonDAO;
-import org.maxym.spring.models.Person;
+import org.maxym.spring.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

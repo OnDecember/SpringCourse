@@ -1,22 +1,32 @@
-package org.maxym.spring.models;
+package org.maxym.spring.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+@Entity
+@Table(name = "person", schema = "public")
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 symbols")
+    @Column(name = "name")
     private String name;
 
     @Min(value = 0, message = "Age should be greater then 0")
+    @Column(name = "age")
     private int age;
     @NotEmpty(message = "Name should not be empty")
     @Email(message = "Email should be valid")
+    @Column(name = "email")
     private String email;
 
     @Pattern(regexp = "[A-Z]\\w+,\\s[A-Z]\\w+,\\s\\d{6}", message = "Your address should be in this format: Country, City, Postal Code (6 digits)")
+    @Column(name = "address")
     private String address;
 
     public Person() {

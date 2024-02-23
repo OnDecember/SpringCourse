@@ -1,7 +1,7 @@
-package org.maxym.spring.controllers;
+package org.maxym.spring.controller;
 
 import org.maxym.spring.dao.PersonDAO;
-import org.maxym.spring.models.Person;
+import org.maxym.spring.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
