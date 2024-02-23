@@ -1,16 +1,17 @@
 package org.maxym.spring.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "person", schema = "public")
 public class Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "seq_generator_person")
+    @SequenceGenerator(name = "seq_generator_person",
+    sequenceName = "person_id_seq", allocationSize = 1)
     @Column(name = "id")
     private int id;
 
@@ -23,8 +24,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id, String name, int age) {
-        this.id = id;
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
