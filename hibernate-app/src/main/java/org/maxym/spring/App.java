@@ -22,13 +22,11 @@ public class App
         try {
             session.beginTransaction();
 
-            Person person1 = new Person("Test1", 30);
-            Person person2 = new Person("Test2", 30);
-            Person person3 = new Person("Test3", 30);
+            Person person = new Person("Some name", 40);
 
-            session.save(person1);
-            session.save(person2);
-            session.save(person3);
+            session.save(person);
+
+            System.out.println(person.getId());
 
             session.getTransaction().commit();
         } finally {
