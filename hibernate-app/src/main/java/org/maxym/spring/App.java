@@ -29,12 +29,17 @@ public class App
         try {
             session.beginTransaction();
 
-            Person person = session.get(Person.class, 7);
+            Person person = new Person("New Person", 20);
 
-            Item item = session.get(Item.class, 1);
+            Item item1 = new Item("Test Item 1");
+            Item item2 = new Item("Test Item 2");
+            Item item3 = new Item("Test Item 3");
 
-            item.setOwner(person);
-            person.getItems().add(item);
+            person.addItem(item1);
+            person.addItem(item2);
+            person.addItem(item3);
+
+            session.save(person);
 
             session.getTransaction().commit();
 
