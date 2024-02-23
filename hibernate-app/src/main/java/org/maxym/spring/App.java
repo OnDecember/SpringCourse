@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.maxym.spring.model.Person;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -22,11 +24,7 @@ public class App
         try {
             session.beginTransaction();
 
-            Person person = new Person("Some name", 40);
-
-            session.save(person);
-
-            System.out.println(person.getId());
+            session.createQuery("DELETE FROM Person WHERE age = 30").executeUpdate();
 
             session.getTransaction().commit();
         } finally {
