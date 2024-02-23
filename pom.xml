@@ -17,6 +17,7 @@
         <module>spring-mvc-app1</module>
         <module>spring-mvc-app2</module>
         <module>spring-project-1</module>
+        <module>hibernate-app</module>
     </modules>
 
     <build>
