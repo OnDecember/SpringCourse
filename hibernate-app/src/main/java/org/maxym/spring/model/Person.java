@@ -3,15 +3,14 @@ package org.maxym.spring.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "person", schema = "public")
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "seq_generator_person")
-    @SequenceGenerator(name = "seq_generator_person",
-    sequenceName = "person_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -20,6 +19,9 @@ public class Person {
 
     @Column(name = "age")
     private int age;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Item> items;
 
     public Person() {
     }
@@ -53,10 +55,19 @@ public class Person {
         this.age = age;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
     }
