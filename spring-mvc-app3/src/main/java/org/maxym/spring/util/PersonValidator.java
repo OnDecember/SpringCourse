@@ -1,7 +1,7 @@
 package org.maxym.spring.util;
 
 import org.maxym.spring.model.Person;
-import org.maxym.spring.service.PeopleService;
+import org.maxym.spring.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -10,11 +10,11 @@ import org.springframework.validation.Validator;
 @Component
 public class PersonValidator implements Validator {
 
-    private final PeopleService peopleService;
+    private final PersonService personService;
 
     @Autowired
-    public PersonValidator(PeopleService peopleService) {
-        this.peopleService = peopleService;
+    public PersonValidator(PersonService personService) {
+        this.personService = personService;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        if (peopleService.findByEmail(person.getEmail()).isPresent())
+        if (personService.findByEmail(person.getEmail()).isPresent())
             errors.rejectValue("email", "", "This email is already taken");
     }
 }

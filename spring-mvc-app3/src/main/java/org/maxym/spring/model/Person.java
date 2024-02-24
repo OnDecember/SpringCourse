@@ -3,6 +3,8 @@ package org.maxym.spring.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "person", schema = "public")
 public class Person {
@@ -25,19 +27,17 @@ public class Person {
     @Column(name = "email")
     private String email;
 
-    @Pattern(regexp = "[A-Z]\\w+,\\s[A-Z]\\w+,\\s\\d{6}", message = "Your address should be in this format: Country, City, Postal Code (6 digits)")
-    @Column(name = "address")
-    private String address;
+    @OneToMany(mappedBy = "owner")
+    private List<Item> items;
 
     public Person() {
     }
 
-    public Person(int id, String name, int age, String email, String address) {
+    public Person(int id, String name, int age, String email) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.email = email;
-        this.address = address;
     }
 
     public int getId() {
@@ -72,11 +72,11 @@ public class Person {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }
