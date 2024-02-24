@@ -1,5 +1,6 @@
 package org.maxym.spring.service;
 
+import org.maxym.spring.model.Mood;
 import org.maxym.spring.model.Person;
 import org.maxym.spring.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class PersonService {
 
     @Transactional
     public void save(Person person) {
+        person.setMood(Mood.CALM);
         personRepository.save(person);
     }
 
