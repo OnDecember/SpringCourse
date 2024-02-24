@@ -28,12 +28,6 @@ public class PersonController {
     @GetMapping
     public String getPeople(Model model) {
         model.addAttribute("people", personService.findAll());
-
-        itemService.findByItemName("airpods");
-        itemService.findByOwner(personService.findById(8));
-
-        personService.test();
-
         return "people/people";
     }
 
