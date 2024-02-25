@@ -25,6 +25,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .userDetailsService(personDetailsService)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/auth/login", "/auth/registration","/error").permitAll()
@@ -35,8 +36,10 @@ public class SecurityConfig {
                         .loginProcessingUrl("/process_login")
                         .defaultSuccessUrl("/hello", true)
                         .failureUrl("/auth/login?error")
-                )
-                .userDetailsService(personDetailsService);
+                ).logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/auth/login")
+                );
         return http.build();
     }
 
