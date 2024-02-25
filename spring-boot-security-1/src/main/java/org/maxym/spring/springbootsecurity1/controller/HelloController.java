@@ -1,6 +1,8 @@
 package org.maxym.spring.springbootsecurity1.controller;
 
 import org.maxym.spring.springbootsecurity1.security.PersonDetails;
+import org.maxym.spring.springbootsecurity1.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
+
+    private final AdminService adminService;
+
+    @Autowired
+    public HelloController(AdminService adminService) {
+        this.adminService = adminService;
+    }
 
     @GetMapping("/hello")
     public String sayHello() {
@@ -26,6 +35,7 @@ public class HelloController {
 
     @GetMapping("/admin")
     public String adminPage() {
+        adminService.doAdmin();
         return "admin";
     }
 }
