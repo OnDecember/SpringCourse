@@ -2,6 +2,7 @@ package org.maxym.spring.springrestapiapp1.service;
 
 import org.maxym.spring.springrestapiapp1.model.Person;
 import org.maxym.spring.springrestapiapp1.repository.PersonRepository;
+import org.maxym.spring.springrestapiapp1.util.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,6 @@ public class PersonService {
     }
 
     public Person findById(int id) {
-        return personRepository.findById(id).orElse(null);
+        return personRepository.findById(id).orElseThrow(PersonNotFoundException::new);
     }
 }
