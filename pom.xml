@@ -21,6 +21,7 @@
         <module>hibernate-app2</module>
         <module>spring-mvc-app3</module>
         <module>spring-project-2</module>
+        <module>rest-api-app1</module>
     </modules>
 
     <build>
