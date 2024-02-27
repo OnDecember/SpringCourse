@@ -5,6 +5,7 @@ import org.maxym.spring.springbootsecurity1.dto.AuthenticationDTO;
 import org.maxym.spring.springbootsecurity1.dto.PersonDTO;
 import org.maxym.spring.springbootsecurity1.model.Person;
 import org.maxym.spring.springbootsecurity1.security.JWTUtil;
+import org.maxym.spring.springbootsecurity1.service.PersonDetailsService;
 import org.maxym.spring.springbootsecurity1.service.PersonService;
 import org.maxym.spring.springbootsecurity1.util.PersonValidator;
 import org.modelmapper.ModelMapper;
@@ -29,14 +30,16 @@ public class AuthController {
     private final JWTUtil jwtUtil;
     private final ModelMapper modelMapper;
     private final AuthenticationManager authenticationManager;
+    private final PersonDetailsService personDetailsService;
 
     @Autowired
-    public AuthController(PersonService personService, PersonValidator personValidator, JWTUtil jwtUtil, ModelMapper modelMapper, AuthenticationManager authenticationManager) {
+    public AuthController(PersonService personService, PersonValidator personValidator, JWTUtil jwtUtil, ModelMapper modelMapper, AuthenticationManager authenticationManager, PersonDetailsService personDetailsService) {
         this.personService = personService;
         this.personValidator = personValidator;
         this.jwtUtil = jwtUtil;
         this.modelMapper = modelMapper;
         this.authenticationManager = authenticationManager;
+        this.personDetailsService = personDetailsService;
     }
 
 //    @GetMapping("/login")
@@ -67,12 +70,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public Map<String, String> performLogin(@RequestBody AuthenticationDTO authenticationDTO) {
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(
-                authenticationDTO.getUsername(),
-                authenticationDTO.getPassword());
-
         try {
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(
+                            authenticationDTO.getUsername(),
+                            authenticationDTO.getPassword());
             authenticationManager.authenticate(authenticationToken);
         } catch (BadCredentialsException exception) {
             return Map.of("message", "Incorrect credentials!");

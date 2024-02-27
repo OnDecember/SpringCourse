@@ -22,12 +22,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final PersonDetailsService personDetailsService;
-    private final JWTFilter jwtFilter;
+    private final JwtTokenFilter filter;
 
     @Autowired
-    public SecurityConfig(PersonDetailsService personDetailsService, JWTFilter jwtFilter) {
+    public SecurityConfig(PersonDetailsService personDetailsService, JwtTokenFilter filter) {
         this.personDetailsService = personDetailsService;
-        this.jwtFilter = jwtFilter;
+        this.filter = filter;
     }
 
     @Bean
@@ -51,7 +51,7 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/auth/login")
                 )
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
